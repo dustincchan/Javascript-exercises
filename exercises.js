@@ -1,3 +1,5 @@
+
+//ARRAY EXERCISES//
 function uniq(ary){
   var uniqValues = new Array();
   var sortedAry = ary.sort();
@@ -37,6 +39,53 @@ function myTranspose(ary) {
   return array;
 }
 
-console.log(myTranspose([[0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8]]));
+
+//Enumerable exercises
+function double(num) {
+  return num*2;
+}
+
+function myEach(array, fun) {
+  for (var i = 0; i < array.length; i++) {
+    fun(array[i]);
+  }
+}
+
+Array.prototype.myEach = function(fun) {
+  for (var i = 0; i < this.length; i++) {
+    fun(this[i]);
+  }
+  return this;
+}
+
+Array.prototype.myMap = function(fun) {
+  var result = new Array();
+
+  this.myEach(function (el) {
+    result.push(fun(el));
+  });
+
+  // }
+  return result;
+};
+
+
+Array.prototype.myInject = function(accumulator, fun) {
+    var i = 0;
+
+    if (accumulator === 'undefined') {
+      accumulator = this[0];
+      i += 1;
+    }
+    while (i < this.length) {
+      accumulator = fun(accumulator, this[i]);
+      i += 1;
+    }
+    return accumulator;
+}
+
+function mySum(x, y) {
+  return x + y;
+}
+
+console.log([1,2,3,4,5].myInject('undefined', mySum))
