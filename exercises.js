@@ -88,4 +88,21 @@ function mySum(x, y) {
   return x + y;
 }
 
-console.log([1,2,3,4,5].myInject('undefined', mySum))
+Array.prototype.bubbleSort = function() {
+  var swapped = true;
+  while (true) {
+    swapped = false
+    for (var i = 0; i < this.length - 1; i++) {
+      if (this[i] > this[i + 1]){
+        this[i + 1] = [this[i], this[i] = this[i + 1]][0];
+        swapped = true
+      }
+    }
+    if (swapped === false){
+      break
+    }
+  }
+  return this
+}
+
+console.log([5, 3, 9, 6, 8, 1].bubbleSort());
